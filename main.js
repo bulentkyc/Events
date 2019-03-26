@@ -70,6 +70,16 @@ For instance, the event transitionend (CSS animation finished) is like that.
 
 //Chapter 3
 // Event Object
-addEventListener('click', () => console.log(event));
+sixthButton.addEventListener('click', (event) => console.log(event));
+
+//Exercise with mouse down and up
+seventhButton.addEventListener('mousedown',()=>seventhButton.value='Hi!');
+
+seventhButton.addEventListener('mouseup',()=>seventhButton.value='Bye!');
 
 
+
+//Capture 4
+//Bubbling and Capturing
+//Samples are on HTML file.
+//Capturing is opposit of Bubbling. For more info please google it!
