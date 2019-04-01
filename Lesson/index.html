@@ -3,68 +3,78 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>JS Events</title>
+    <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-        .border{
-            margin: 10px;
-            border: 1px solid red;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    
 </head>
 <body>
-Event handlers
-<!--Inline event handler.
-    rarely used in these days-->
-    <input type="button" value="HandlerOnHTML" onclick="alert('Hi!')">
-<!--More famous-->
-    <input type="button" value="HandlerOnJs" id="secondButton" onclick="alert('Hi!')">
-    <input type="button" value="HandlerOnJs3" id="thirdButton">
-    <input type="button" value="button for 'this'" id="fourthButton">
-    <input type="button" value="for addEvLis" id="fifthButton">
-    <!--This button added for log event object to console-->
-    <input type="button" value="log event" id="sixthButton">
-    <!--This button added for mousedown, mouseup-->
-    <input type="button" value="click me" id="seventhButton">
+    <div class="board">
 
-    <br>
-<!--Almost all events bubble but ALMOST!-->
-    <div onclick="alert('You did it!')">
-        <em>
-            If you click on 
-            <code>
-                EM
-            </code>,
-            the handler on 
-            <code>
-                DIV
-            </code>
-            runs.
-        </em>
+        <div class="cell" id="0">
+            
+        </div>
+
+        <div class="cell" id="1">
+            
+        </div>
+
+        <div class="cell" id="2">
+            
+        </div>
+
+        <div class="cell" id="3">
+            
+        </div>
+
+        <div class="cell" id="4">
+            
+        </div>
+
+        <div class="cell" id="5">
+            
+        </div>
+
+        <div class="cell" id="6">
+            
+        </div>
+
+        <div class="cell" id="7">
+            
+        </div>
+
+        <div class="cell" id="8">
+            
+        </div>
+
+        <div class="cell" id="9">
+            
+        </div>
+
+        <div class="cell" id="10">
+            
+        </div>
+
+        <div class="cell" id="11">
+            
+        </div>
+
+        <div class="cell" id="12">
+            
+        </div>
+
+        <div class="cell" id="13">
+            
+        </div>
+
+        <div class="cell"  id="14">
+            
+        </div>
+
+        <div class="cell" id="15">
+            
+        </div>
     </div>
-    <br>
-    Buubling Sample
-    <form class="border" onclick="alert('FORM')">
-        FORM
-        <div class="border" onclick="alert('DIV!')">
-            DIV
-            <p class="border" onclick="alert('P!')">
-                P
-            </p>
-        </div>
-    </form>
-
-    <br>
-    Prevent Buubling Sample
-    <form class="border" onclick="alert('FORM')">
-        FORM
-        <div class="border" onclick="event.stopPropagation(); alert('fafas');">
-            DIV
-            <p class="border" onclick="alert('P!')">
-                P
-            </p>
-        </div>
-    </form>
     <script src="main.js"></script>
 </body>
 </html>
