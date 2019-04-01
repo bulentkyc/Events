@@ -1,85 +1,51 @@
-//Chapter 1
-//Introducing Events
-/*Links for all events:
-https://developer.mozilla.org/en-US/docs/Web/Events
-https://developer.mozilla.org/en-US/docs/Web/API/Event
-*/
+let rndArr=[];
+let firstCell, secondCell;
+let openedCellCount=0;
 
-//Event handler on JS
-document.getElementById('secondButton').onclick = function(){
-    alert('Hi from JS');
+function clickCell (event){
+    if (openedCellCount == 0) {
+        firstCell = event.target;
+        event.target.innerHTML = rndArr[event.target.id];
+        openedCellCount += 1;
+    } else{
+        secondCell = event.target;
+        event.target.innerHTML = rndArr[event.target.id];
+        openedCellCount = 0;
+        if (firstCell.innerHTML == secondCell.innerHTML) {
+            firstCell.style.backgroundColor = 'rgb(31, 41, 52)';
+            secondCell.style.backgroundColor = 'rgb(31, 41, 52)';
+        } else {
+            setTimeout( function(){
+            firstCell.innerHTML = '';
+            secondCell.innerHTML = '';
+            }, 1800 );
+        }
+    }
 }
 
-//use id directly and assign a function
-thirdButton.onclick = sayHi;
-
-function sayHi() {
-    alert('Hi from function!')
+let cellArr = document.getElementsByClassName('cell');
+for(cell of cellArr){
+    cell.addEventListener('click', (event)=> clickCell(event));
 }
 
-//Remove event assignment
-secondButton.onclick = null;
+let rndGen = () => {
+    let newRnd;  //new random number for every iteration
+    let rndCount = 0;
 
-//'this' usage
-fourthButton.onclick = alertValue;
-
-function alertValue(){
-    alert(this.value);
+    for(i=0; i<16; i++){
+        do {
+            rndCount = 0;
+            newRnd = Math.floor(Math.random() * 8);
+            for(j=0; j<=i; j++){
+                if(rndArr[j] == newRnd){
+                    rndCount += 1;
+                }
+            }
+            if (rndCount < 2) {
+                rndArr[i] = newRnd;
+            }
+        } while (rndCount == 2);
+    }
+    console.log(rndArr);
 }
-
-/* !!!!!Important advices!!!!!!:
-1)  Create event handlers on js part.
-2)  Create functions and conncet event handlers to functions.
-3)  Do not use Bracets with function calls.
-4)  Do not forget, you can assign event handler just one time.
-    If you do it again, you will overwrite old one.
-*/
-
-//Chapter 2
-//addEventListener-removeEventListener
-
-fifthButton.onclick = function() {alert('1')};
-// replaces the previous handler
-fifthButton.onclick = function() {alert('2')};
-
-//Set event listener with traditinal function
-fifthButton.addEventListener('click', function() {alert('3')});
-
-//Set event listener with outer function
-fifthButton.addEventListener('click', alertValue);
-
-//Set event listener with arrow functions
-fifthButton.addEventListener('click', () => {alert('Hi from Arrow Func.');});
-
-let myFirstArrowFunc = () => {
-    alert('Hello World!');
-}
-
-//Set event listener with arrow functions
-fifthButton.addEventListener('click',myFirstArrowFunc );
-
-//Remove event Listener
-fifthButton.removeEventListener('click', alertValue);
-//Next line does not work. Because removeEventListener just work with function calls!
-fifthButton.removeEventListener('click', function() {alert('3')});
-
-/* !!!Warning!!!
-There exist events that can’t be assigned via a DOM-property. Must use addEventListener.
-For instance, the event transitionend (CSS animation finished) is like that.
-*/
-
-//Chapter 3
-// Event Object
-sixthButton.addEventListener('click', (event) => console.log(event));
-
-//Exercise with mouse down and up
-seventhButton.addEventListener('mousedown',()=>seventhButton.value='Hi!');
-
-seventhButton.addEventListener('mouseup',()=>seventhButton.value='Bye!');
-
-
-
-//Capture 4
-//Bubbling and Capturing
-//Samples are on HTML file.
-//Capturing is opposit of Bubbling. For more info please google it!
+rndGen();
